@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+config.json
+output/
+.state/
+.cai-definition-runner/
+browser-profile/
+pending-restore.json
+run.lock
+*.zip
+*.log
+.pytest_cache/

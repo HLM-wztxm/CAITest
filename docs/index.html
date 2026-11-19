@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Enter a Character.AI character link to generate an English reverse-engineering and export prompt you can copy into Codex.">
+  <title>CAITest · Prompt generator</title>
+  <style>
+    :root{color-scheme:light;--ink:#172a3a;--muted:#526575;--accent:#146954;--line:#d8e3e5}
+    *{box-sizing:border-box}body{margin:0;background:#f3f7f9;color:var(--ink);font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:820px;margin:auto;padding:40px 24px 64px}nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px}nav strong{letter-spacing:.06em}a{color:var(--accent);text-underline-offset:4px}
+    .eyebrow{color:var(--accent);font-size:.875rem;font-weight:650;letter-spacing:.12em}h1{font-size:clamp(2rem,5vw,3rem);line-height:1.25;letter-spacing:-.04em;margin:14px 0 18px}p{margin:0 0 22px}.intro{color:var(--muted);max-width:620px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;margin-top:30px;box-shadow:0 12px 36px #142d3b06}label{display:block;font-weight:650;margin-bottom:10px}input,textarea,button{font:inherit}input,textarea{width:100%;border:1px solid #9aafb9;border-radius:10px;background:#fff;color:var(--ink);padding:13px 15px}input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #74c9af;outline-offset:3px}input[aria-invalid=true]{border-color:#b33232}
+    .hint{font-size:.875rem;color:var(--muted);margin:10px 0 20px;overflow-wrap:anywhere}button{border:0;border-radius:10px;padding:12px 22px;cursor:pointer;font-weight:650;background:var(--accent);color:#fff}button:hover{filter:brightness(.94)}button:disabled{cursor:not-allowed;background:#e6edef;color:#647782;filter:none}.error{color:#a62727;margin:10px 0 0}.error:empty{display:none}
+    .output-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:26px 0 12px}.output-heading label{margin:0}.secondary{background:#e5f2ed;color:var(--accent);padding:8px 16px}textarea{min-height:310px;resize:vertical;background:#f9fbfc;font:14px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}#status{min-height:1.7em;margin:10px 0 0;font-size:.875rem;color:var(--accent)}.footnote{margin-top:25px;color:var(--muted);font-size:.875rem}.footnote p{margin-bottom:8px}
+    @media(max-width:520px){main{padding:24px 16px 40px}nav{margin-bottom:36px}.card{padding:20px 16px;border-radius:16px}textarea{min-height:390px}.output-heading{flex-wrap:wrap}button[type=submit]{width:100%}}
+  </style>
+  <script src="generator.js" defer></script>
+</head>
+<body>
+  <main>
+    <nav aria-label="Navigation"><strong>CAITest</strong><a href="https://github.com/HLM-wztxm/CAITest">View on GitHub</a></nav>
+    <header>
+      <div class="eyebrow">CHARACTER.AI EXPORT</div>
+      <h1>One link. One prompt.</h1>
+      <p class="intro">Enter a character link to generate an English prompt. Paste it into Codex so the agent can download the project, read the skill, and run the reverse-engineering and export workflow.</p>
+    </header>
+    <section class="card" aria-label="Prompt generator">
+      <form id="generator" novalidate>
+        <label for="character-url">Character.AI character link</label>
+        <input id="character-url" type="url" autocomplete="off" spellcheck="false" placeholder="https://character.ai/chat/CHARACTER_ID" aria-describedby="url-hint error" required>
+        <p class="hint" id="url-hint">Supports https://character.ai/chat/… links, including those with a hist session parameter.</p>
+        <button type="submit">Generate prompt</button>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+      <div class="output-heading"><label for="prompt">English prompt</label><button id="copy" class="secondary" type="button" disabled>Copy prompt</button></div>
+      <textarea id="prompt" readonly spellcheck="false" placeholder="Your generated English prompt will appear here."></textarea>
+      <p id="status" role="status" aria-live="polite"></p>
+    </section>
+    <footer class="footnote">
+      <p>Your link is processed only on this page and is never uploaded. Generating a prompt does not start an export.</p>
+      <p>Use an agent that can run local commands. The workflow requires Git, uv, and Chrome. Complete login and any CAPTCHA yourself in Chrome. A Definition recovered from model responses may be incomplete or inaccurate.</p>
+      <a href="https://github.com/HLM-wztxm/CAITest#readme">Read the instructions</a>
+    </footer>
+  </main>
+</body>
+</html>
